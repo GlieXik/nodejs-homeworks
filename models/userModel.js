@@ -17,13 +17,17 @@ const userSchema = new Schema({
     enum: ["starter", "pro", "business"],
     default: "starter",
   },
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
   avatarURL: String,
-
   token: String,
+
+  verify: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: {
+    type: String,
+    required: [true, "Verify token is required"],
+  },
 });
 
 userSchema.pre("save", async function (next) {
